@@ -1,0 +1,10 @@
+openssl req -x509 -out localhost.crt -keyout localhost.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj '/CN=localhost' -extensions EXT -config <( \
+   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+
+
+   openssl req -x509 -out http2.test.crt -keyout http2.test.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj '/CN=http2.test' -extensions EXT -config <( \
+   printf "[dn]\nCN=http2.test\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:http2.test\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
